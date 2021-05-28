@@ -1,0 +1,50 @@
+import edu.duke.*;
+import java.io.*;
+import java.lang.*;
+
+public class Part2 {
+public class simpleGene{  
+    public String findSimpleGene(String dna, String startCodon, String stopCodon){
+    char c = dna.charAt(0);
+    boolean b=Character.isUpperCase(c);
+    if (b==true){
+    dna = dna.toUpperCase();
+    startCodon=startCodon.toUpperCase();
+    stopCodon=stopCodon.toUpperCase();
+
+}
+else{
+dna=dna.toLowerCase();
+startCodon=startCodon.toLowerCase();
+stopCodon=stopCodon.toLowerCase();
+}
+        
+    int start = dna.indexOf(startCodon);
+    if(start==-1){
+    return "";
+    }
+    int stop = dna.indexOf(stopCodon,start+3);
+    
+    if((stop-start)%3==0){
+    return dna.substring(start,stop+3);
+    }
+    else{
+    return "";
+    }
+    
+    }
+
+}
+public String testfindSimpleGene(){
+simpleGene s = new simpleGene();
+String a ="actgaatgaagtaa";
+String a1 ="GACTAGATAGAACAGTAGACCAGTAGACA";
+String a2 ="GTACGATAGGAATAACAGATGA";
+String a3 ="AAATGCCCTAACTAGATTAAGAAACC";
+String startCodon="ATg";
+String stopCodon= "taa";
+
+return s.findSimpleGene(a3,startCodon,stopCodon);
+
+}
+}
